@@ -1,0 +1,46 @@
+databricks:
+  workspace_url: "https://{workspace-id}.cloud.databricks.com"
+  # Use environment variable for token: DATABRICKS_TOKEN
+  # token: ""  # Set via environment variable
+  
+  # Cluster Configuration
+  cluster:
+    name: "market-data-cluster"
+    spark_version: "13.3.x-scala2.12"
+    node_type_id: "i3.xlarge"  # For Community Edition, use smaller instance
+    num_workers: 2
+    autotermination_minutes: 30
+    spark_conf:
+      "spark.databricks.delta.optimizeWrite.enabled": "true"
+      "spark.databricks.delta.autoCompact.enabled": "true"
+    spark_env_vars:
+      AWS_ACCESS_KEY_ID: "${AWS_ACCESS_KEY_ID}"
+      AWS_SECRET_ACCESS_KEY: "${AWS_SECRET_ACCESS_KEY}"
+      AWS_DEFAULT_REGION: "${AWS_DEFAULT_REGION}"
+  
+  # SQL Warehouse Configuration (Alternative to cluster)
+  sql_warehouse:
+    name: "market-data-warehouse"
+    cluster_size: "Small"  # Small, Medium, Large, etc.
+    min_num_clusters: 1
+    max_num_clusters: 2
+    auto_stop_mins: 10
+    enable_photon: true
+  
+  # S3 Configuration
+  s3:
+    bucket_name: "${S3_BUCKET_NAME}"
+    delta_path: "s3://${S3_BUCKET_NAME}/delta"
+    # Mount point (optional, for DBFS mounting)
+    mount_point: "/mnt/market-data"
+  
+  # Unity Catalog Configuration (if using)
+  unity_catalog:
+    enabled: false  # Set to true if using Unity Catalog
+    catalog_name: "market_data"
+    schema_name: "market_analytics"
+  
+  # Hive Metastore (default, if not using Unity Catalog)
+  hive_metastore:
+    database_name: "market_data"
+    location: "s3://${S3_BUCKET_NAME}/delta"

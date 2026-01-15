@@ -1,0 +1,38 @@
+pipeline:
+  ingestion:
+    schedule: "0 * * * *"  # Hourly (cron syntax)
+    retry_attempts: 3
+    retry_delay_seconds: 60
+    timeout_seconds: 300
+    batch_size: 10  # Number of assets to process in parallel
+    
+  etl:
+    schedule: "5 * * * *"  # 5 minutes after each hour
+    retry_attempts: 2
+    retry_delay_seconds: 120
+    spark_config:
+      executor_memory: "4g"
+      driver_memory: "2g"
+      max_result_size: "2g"
+    
+  warehouse_load:
+    schedule: "10 * * * *"  # 10 minutes after each hour
+    retry_attempts: 2
+    retry_delay_seconds: 180
+    
+  backfill:
+    enabled: true
+    default_period_days: 90
+    batch_size: 7  # Days per batch
+    rate_limit_delay: 1  # Seconds between API calls
+    
+  data_quality:
+    strict_mode: true
+    alert_on_failures: true
+    validation_rules:
+      price_min: 0.01
+      price_max: 1000000
+      volume_min: 0
+      rsi_min: 0
+      rsi_max: 100
+      change_pct_max: 50  # Max 50% change (sanity check)

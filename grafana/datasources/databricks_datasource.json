@@ -1,0 +1,22 @@
+{
+  "name": "Databricks",
+  "type": "postgres",
+  "access": "proxy",
+  "url": "your-databricks-sql-warehouse-url:443",
+  "user": "token",
+  "database": "market_data",
+  "basicAuth": false,
+  "isDefault": true,
+  "jsonData": {
+    "sslmode": "require",
+    "postgresVersion": 1200,
+    "timescaledb": false,
+    "maxOpenConns": 100,
+    "maxIdleConns": 100,
+    "connMaxLifetime": 14400
+  },
+  "secureJsonData": {
+    "password": "your-databricks-token"
+  },
+  "readOnly": false
+}

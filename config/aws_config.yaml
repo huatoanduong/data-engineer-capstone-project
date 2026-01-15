@@ -1,0 +1,23 @@
+aws:
+  region: us-east-1
+  s3:
+    bucket_name: stock-crypto-market-data-{your-unique-id}
+    # Bucket structure
+    bronze_path: bronze
+    silver_path: silver
+    gold_path: gold
+    delta_path: delta  # For Delta Lake tables
+    
+  # IAM Configuration
+  iam:
+    # Use IAM role ARN if using roles, or leave empty to use access keys
+    role_arn: ""
+    # Policy name for S3 access
+    policy_name: "StockCryptoMarketDataS3Policy"
+    
+  # Lifecycle Policies
+  lifecycle:
+    bronze_retention_days: 90  # Keep bronze data for 90 days
+    silver_retention_days: 180  # Keep silver data for 180 days
+    gold_retention_days: 365   # Keep gold data for 365 days
+    transition_to_glacier_days: 30  # Move to Glacier after 30 days

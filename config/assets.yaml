@@ -1,0 +1,74 @@
+assets:
+  stocks:
+    - symbol: AAPL
+      name: Apple Inc.
+      sector: Technology
+      exchange: NASDAQ
+    - symbol: MSFT
+      name: Microsoft Corporation
+      sector: Technology
+      exchange: NASDAQ
+    - symbol: GOOGL
+      name: Alphabet Inc.
+      sector: Technology
+      exchange: NASDAQ
+    - symbol: AMZN
+      name: Amazon.com Inc.
+      sector: Consumer Cyclical
+      exchange: NASDAQ
+    - symbol: TSLA
+      name: Tesla Inc.
+      sector: Consumer Cyclical
+      exchange: NASDAQ
+    - symbol: META
+      name: Meta Platforms Inc.
+      sector: Technology
+      exchange: NASDAQ
+    - symbol: NVDA
+      name: NVIDIA Corporation
+      sector: Technology
+      exchange: NASDAQ
+    - symbol: JPM
+      name: JPMorgan Chase & Co.
+      sector: Financial Services
+      exchange: NYSE
+    - symbol: V
+      name: Visa Inc.
+      sector: Financial Services
+      exchange: NYSE
+    - symbol: JNJ
+      name: Johnson & Johnson
+      sector: Healthcare
+      exchange: NYSE
+
+  crypto:
+    - symbol: BTC-USD
+      name: Bitcoin
+      market_cap_rank: 1
+    - symbol: ETH-USD
+      name: Ethereum
+      market_cap_rank: 2
+    - symbol: BNB-USD
+      name: Binance Coin
+      market_cap_rank: 3
+    - symbol: SOL-USD
+      name: Solana
+      market_cap_rank: 4
+    - symbol: XRP-USD
+      name: Ripple
+      market_cap_rank: 5
+    - symbol: ADA-USD
+      name: Cardano
+      market_cap_rank: 6
+    - symbol: DOGE-USD
+      name: Dogecoin
+      market_cap_rank: 7
+    - symbol: DOT-USD
+      name: Polkadot
+      market_cap_rank: 8
+    - symbol: MATIC-USD
+      name: Polygon
+      market_cap_rank: 9
+    - symbol: AVAX-USD
+      name: Avalanche
+      market_cap_rank: 10

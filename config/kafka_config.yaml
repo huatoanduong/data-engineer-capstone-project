@@ -1,0 +1,33 @@
+kafka:
+  # Broker configuration
+  broker:
+    # Internal Docker network address
+    internal: "kafka:9092"
+    # External address (for local development)
+    external: "localhost:29092"
+  
+  # Topics configuration
+  topics:
+    - name: "market-data-stocks"
+      partitions: 3
+      replication_factor: 1  # Use 1 for single broker, 3+ for production
+      retention_hours: 168  # 7 days
+      retention_bytes: -1  # Unlimited
+      cleanup_policy: "delete"  # or "compact"
+      compression_type: "snappy"
+      
+    - name: "market-data-crypto"
+      partitions: 3
+      replication_factor: 1
+      retention_hours: 168  # 7 days
+      retention_bytes: -1
+      cleanup_policy: "delete"
+      compression_type: "snappy"
+  
+  # Consumer groups
+  consumer_groups:
+    - name: "databricks-loader-stocks"
+      topic: "market-data-stocks"
+      
+    - name: "databricks-loader-crypto"
+      topic: "market-data-crypto"
